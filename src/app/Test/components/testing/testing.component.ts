@@ -15,6 +15,8 @@ export class TestingComponent implements OnInit {
 
   constructor(private testservice:TestingService) { }
 
+    title='Testing'
+
   ngOnInit(): void {
    this.getpost()
   }
@@ -26,6 +28,10 @@ export class TestingComponent implements OnInit {
     }
     )
   }
+sum(){
+  return 100
+}
+
 
 
 }

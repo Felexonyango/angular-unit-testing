@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
 import { TestingService } from './testing.service';
 import { mockData } from '../Mock/Data';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 describe('TestingService', () => {
   let service: TestingService;
   let httpMock: HttpTestingController;
@@ -10,7 +10,9 @@ describe('TestingService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+
       imports: [HttpClientTestingModule],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [TestingService]
     });
     service = TestBed.inject(TestingService);
@@ -18,7 +20,7 @@ describe('TestingService', () => {
   });
 
 
-  it('should be get posts', () => {
+  it('should  get posts', fakeAsync(() => {
    service.getpost().subscribe(data=>{
 
       expect(data).toEqual(mockData);
@@ -28,7 +30,7 @@ describe('TestingService', () => {
 
   expect(req.request.method).toBe('GET');
   req.flush(mockData);
-});
+}))
   
   });
 
